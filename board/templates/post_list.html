@@ -18,6 +18,7 @@
     <div>제목:{{ post.title }}</div>
     <div>내용:{{ post.content }}</div>
     <div>시간:{{ post.created_at }}</div>
+    <div>글쓴이:{{ post.author }}</div>
     <a href="{% url 'post_detail' post.id %}">자세히보기</a>
     {% endfor %}
     <br>

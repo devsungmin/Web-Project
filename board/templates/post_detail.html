@@ -17,7 +17,11 @@
     <div>제목:{{ post.title }}</div>
     <div>내용:{{ post.content }}</div>
     <div>시간:{{ post.created_at }}</div>
-
+    <div>글쓴이:{{ post.diary }}</div>
+    {% if post.author == request.user %}
+<a href="{% url 'post_update' post.id %}">수정하기</a>
+<a href="{% url 'post_delete' post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
+{% endif %}
 {% endblock %}
 
 
