@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>선문대학교 셔틀버스</title>
+</head>
+<body>
+        {% block header %}
+
+{% if post.image.url is not None %}
+<img src="{{ post.image.url }}" alt="" width="150px">
+    {% endif %}
+    <div>제목:{{ post.title }}</div>
+    <div>내용:{{ post.content }}</div>
+    <div>시간:{{ post.created_at }}</div>
+
+{% endblock %}
+
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>선문대학교 셔틀버스</title>
+</head>
+  
+<body>
+        {% block header %}
+        <form method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+            아이디:<input type="text" name="username" required="required"><br>
+            비밀번호:<input type="password" name="password" required="required"><br>
+        <input type="submit" value="로그인">
+        </form>
+            <a href="{% url 'signup' %}">회원가입</a>
+        {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+  </script>
+  </body>
+</html>
