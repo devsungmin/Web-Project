@@ -17,11 +17,39 @@
     <div>제목:{{ post.title }}</div>
     <div>내용:{{ post.content }}</div>
     <div>시간:{{ post.created_at }}</div>
-    <div>글쓴이:{{ post.diary }}</div>
+    <div>글쓴이:{{ post.author }}</div>
     {% if post.author == request.user %}
 <a href="{% url 'post_update' post.id %}">수정하기</a>
 <a href="{% url 'post_delete' post.id %}" onclick="return confirm('정말 삭제하시겠습니까?')">삭제하기</a>
 {% endif %}
+
+<h2>댓글</h2>
+<br>
+<form action="{% url 'comment_create' post.id %}" method="POST">
+    {% csrf_token %}
+    <textarea name="message" cols="50" rows="10" id="comment_message"></textarea>
+    <input type="submit" value="작성" class="comment_write" name="{{comment.id}}">
+    
+</form>
+
+{% for comment in comments %}
+<div class="comment_text">내용: {{ comment.message }}</div>
+<div>작성자: {{ comment.author }}</div>
+<div>작성시간: {{ comment.created_at }} </div>
+{% if comment.author == request.user %}
+
+<form action="{% url 'comment_update' comment.id %}" class="btn_comment_update">
+<input type="submit" value="수정"style="color:blue;">
+</form>
+
+
+<form action="{% url 'comment_delete' comment.id %}" method="POST">
+{% csrf_token %}
+        <input type="submit" value="삭제" style="color:red;"onclick="return confirm('정말 삭제하시겠습니까?')" >
+    </form>
+    {% endif %}
+    <hr>
+{% endfor %}
 {% endblock %}
 
 

@@ -25,6 +25,6 @@ urlpatterns = [
     path('', main.views.index,name="index"),
     path('index/',include('main.urls')),
     path('board/',include('board.urls')),
-    path('account/',include('account.urls')),
+    path('accounts/',include('accounts.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

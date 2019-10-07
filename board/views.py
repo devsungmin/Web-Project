@@ -28,8 +28,11 @@ def post_create(request):
 @login_required
 def post_detail(request,id):
     post = get_object_or_404(Post, pk=id)
-    return render(request,"post_detail.html",{"post":post})
+    comments = Comment.objects.filter(post=post.id)
+    return render(request,"post_detail.html",{"post":post,"comments":comments})
 
+
+@login_required
 def post_update(request,id):
     if request.method == "GET":
         post = get_object_or_404(Post, pk=id)
@@ -45,9 +48,47 @@ def post_update(request,id):
         return redirect("post_detail",id)
     return Http404()
 
+
+@login_required
 def post_delete(request,id):
     post = get_object_or_404(Post,pk=id)
     if post.author != request.user:
         return redirect("main")
     post.delete()
     return redirect("post_list")
+
+
+@login_required
+def comment_create(request,id):
+    if request.method=='POST':
+        comment = Comment()
+        comment.message = request.POST["message"]
+        comment.post = get_object_or_404(Post, pk=id)
+        comment.author = request.user
+        comment.save()        
+        return redirect("post_detail",id)
+    return redirect("post_detail",id)
+
+@login_required
+def comment_delete(request,id):
+    diary = get_object_or_404(Comment,pk=id)
+    if diary.author != request.user:
+        return redirect("post_detail",id)
+    if request.method=='POST':
+        diary_pk=diary.diary.pk
+        diary.delete()
+        return redirect("post_detail",id)
+    return redirect("post_detail",id)
+
+@login_required
+def comment_update(request, id):
+    comment=get_object_or_404(Comment, pk=id)   
+    if comment.author != request.user:
+        return redirect("index")
+    if request.method=='POST':
+        comment.message=request.POST["message"]
+        comment_pk=comment.post.pk
+        comment.save()
+        return redirect("post_detail", id=comment_pk)
+    elif request.method == 'GET':
+        return render(request, "comment_update.html", {"comment": comment})

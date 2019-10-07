@@ -13,12 +13,14 @@
         {% block header %}
         <form method="POST" action="{% url 'signup' %}">
                 {% csrf_token %}
-                아이디:<input type="text" name="username" required="required"><br>
-            비밀번호:<input type="password" name="password" required="required"><br>
+                아이디:<span>
+                    <input type="text" name="username" required="required" >
+                    <span>@sunmoon.ac.kr</span>
+                </span><br>
+                    비밀번호:<input type="password" name="password" required="required"><br>
             비밀번호 확인:<input type="password" name="pwcheck" required="required"><br>
             이름:<input type="text" name="name" required="required"><br>
             휴대폰:<input type="text" name="phone" required="required"><br>
-            이메일:<input type="text" name="email" required="required"><br>
             <input type="submit" value="회원가입">
             </form>
         {% endblock %}

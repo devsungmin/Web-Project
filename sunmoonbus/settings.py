@@ -25,7 +25,7 @@ SECRET_KEY = '9@9k!%-+u+y(d5g_5%^@u%i=revz%ksmqrdbwrqpl^&-=b8)bk'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main.apps.MainConfig',
     'board.apps.BoardConfig',
-    'account.apps.AccountConfig',
+    'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +129,15 @@ STATICFILES_DIRS=[
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 MEDIA_URL = "/media/"
 
-AUTH_USER_MODEL = 'account.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 from django.urls.base import reverse_lazy
 LOGIN_URL = reverse_lazy('login')
+
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'tyyt0528@likelion.org'
+EMAIL_HOST_PASSWORD = 'wnsgml0528!'
+EMAIL_PORT = 587
+EMAIL_USE_TLS=True
+# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
