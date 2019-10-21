@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    {% block content %}
+    {% block header %}
    <form action="{% url 'comment_update' comment.id %}" method="POST">
        {% csrf_token %}
        <textarea name="message" cols="50" rows="10">{{comment.message}}</textarea>

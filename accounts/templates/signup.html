@@ -3,13 +3,16 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+        {% block head %}
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>선문대학교 셔틀버스</title>
 </head>
-  
+{% endblock %}
+
 <body>
+
         {% block header %}
         <form method="POST" action="{% url 'signup' %}">
                 {% csrf_token %}
@@ -23,9 +26,7 @@
             휴대폰:<input type="text" name="phone" required="required"><br>
             <input type="submit" value="회원가입">
             </form>
-        {% endblock %}
 
-        {% block content %}
     {% endblock %}
   </script>
   </body>
