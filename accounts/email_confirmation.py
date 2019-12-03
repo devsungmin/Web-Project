@@ -1,3 +1,5 @@
+# 2015244044 이준희
+# 이메일 인증번호를 30글자로 랜덤으로 출력
 import string
 import random
 

@@ -1,3 +1,5 @@
+# 2015244044 이준희
+# url 경로지정
 from django.urls import path
 from .import views
 

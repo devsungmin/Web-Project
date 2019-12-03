@@ -1,3 +1,5 @@
+# 2015244044 이준희
+# 사용자 DB 
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
